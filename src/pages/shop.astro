@@ -34,6 +34,10 @@ const related = [
   <body id="top">
     <Header />
     <main>
+      <section class="wrap back-row">
+        <a class="back-link" href="/"><span aria-hidden="true">←</span> Back to home</a>
+      </section>
+
       <section class="wrap crumb">
         <a href="/">Home</a><span aria-hidden="true">›</span>
         <a href="/shop">Shop</a><span aria-hidden="true">›</span>
@@ -177,7 +181,14 @@ const related = [
     </script>
 
     <style>
-      .crumb { padding-top: 28px; font-size: .8125rem; color: var(--muted); display: flex; gap: 8px; align-items: center; }
+      .back-row { padding-top: 96px; }
+      .back-link {
+        display: inline-flex; align-items: center; gap: 8px;
+        font-size: .875rem; font-weight: 600; color: var(--accent);
+      }
+      .back-link:hover { text-decoration: underline; }
+
+      .crumb { padding-top: 16px; font-size: .8125rem; color: var(--muted); display: flex; gap: 8px; align-items: center; }
       .crumb a:hover { text-decoration: underline; }
       .crumb span:last-child { color: var(--ink); font-weight: 500; }
 
