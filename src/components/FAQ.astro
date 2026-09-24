@@ -1,0 +1,44 @@
+---
+const faqs = [
+  ['Can I get a quote with hand-drawn sketches instead of architectural drawings?', 'Yes. Send your rough dimensions or bring them to our Woodridge counter. We convert them into exact 3D models and quotes via goCabinets.'],
+  ['What is the typical turnaround (lead time) for an order?', 'Typically 5–10 business days from specification confirmation. Urgent site jobs can be expedited thanks to our local manufacturing.'],
+  ['How does TCS flat pack differ from modular big-box stores (IKEA / Kaboodle)?', 'Big-box stores use fixed 300/600/900 mm modules that require filler strips. TCS offers 100% millimetre-exact custom sizing with premium Australian boards and Blum hardware.'],
+  ['Do you provide cabinet installation?', 'We are supply-only specialists. We gladly refer trusted, verified local carpenters and installers across Brisbane for professional installation.'],
+  ['Is HMR (High Moisture Resistant) board standard for all cabinets?', 'HMR is an available premium specification option tailored to kitchens, laundries and wet areas. Customers can choose standard or HMR depending on project requirements.'],
+  ['Can I order doors, benchtops and hardware together?', 'Yes. We supply Polytec and Laminex doors, laminate benchtops, Blum hinges and runners, and consumables (silicone, screws) all from one counter.'],
+  ['Can homeowners use the goCabinets 3D planner easily?', 'Yes. It offers an intuitive 3D drag-and-drop interface, accompanied by our step-by-step video tutorial.'],
+  ['What vehicle is required for factory pickup?', 'Standard flat pack kits contain panels up to 2,400 mm long, so a ute, enclosed van or trailer with at least 2,400 mm (2.4 m) of flat cargo length is recommended. Small individual modules can fit in a large SUV.'],
+  ['Do you deliver to job sites, and how are shipping fees calculated?', 'Yes, via trusted logistics partners across Greater Brisbane, Logan, the Gold Coast and surrounding South East Queensland. Rates are calculated from the distance to Woodridge and the total pack volume.'],
+  ['What happens if site measurements change or a panel needs remaking?', 'This is our key local advantage: instead of waiting 3–4 weeks for interstate or overseas shipments, we provide same-day or next-day rapid remakes at our Woodridge workshop.'],
+];
+---
+<section class="section" id="faq">
+  <div class="wrap split top">
+    <h2 class="dual dual--sm">Questions, <b>answered straight.</b></h2>
+    <div class="list">
+      {faqs.map(([q, a]) => (
+        <details>
+          <summary>{q}</summary>
+          <p>{a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .top { align-items: start; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); }
+  .top > h2 { position: sticky; top: 120px; }
+  .list { border-top: 1px solid var(--rule); }
+  details { border-bottom: 1px solid var(--rule); }
+  summary {
+    list-style: none; cursor: pointer;
+    display: flex; justify-content: space-between; gap: 24px;
+    padding: 24px 0; font-weight: 600; font-size: 1.0625rem;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: '+'; flex: none; font-weight: 300; font-size: 1.5rem; line-height: 1; color: var(--sage); transition: transform .3s var(--ease); }
+  details[open] summary::after { transform: rotate(45deg); }
+  details p { padding: 0 48px 26px 0; color: var(--muted); max-width: 62ch; }
+  @media (max-width: 900px) { .top { grid-template-columns: 1fr; } }
+</style>

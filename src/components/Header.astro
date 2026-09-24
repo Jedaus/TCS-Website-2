@@ -1,0 +1,52 @@
+---
+import { portalHref, GOCABINETS_PORTAL_URL } from '../config';
+const ext = GOCABINETS_PORTAL_URL ? { target: '_blank', rel: 'noopener' } : {};
+const links = [
+  ['Portfolio', '#portfolio'],
+  ['3D Planner', '#planner'],
+  ['Why TCS', '#why'],
+  ['For Trade', '#trade'],
+  ['FAQ', '#faq'],
+];
+---
+<header class="bar">
+  <div class="pill">
+    <a class="brand" href="#top" aria-label="Total Cabinet Supplies, back to top">
+      <img src="/tcs-logo.png" width="1435" height="785" alt="Total Cabinet Supplies" />
+    </a>
+    <nav aria-label="Sections">
+      {links.map(([label, href]) => <a href={href}>{label}</a>)}
+    </nav>
+    <div class="cta">
+      <a class="btn btn--ghost" href={portalHref} {...ext}>Trade Login <span aria-hidden="true">↗</span></a>
+      <a class="btn btn--dark" href="#quote">Request a Quote <span aria-hidden="true">•</span></a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .bar { position: sticky; top: 16px; z-index: 50; padding-inline: var(--pad); }
+  .pill {
+    max-width: var(--maxw); margin: 0 auto;
+    display: flex; align-items: center; gap: 24px;
+    padding: 10px 10px 10px 24px;
+    border-radius: 999px;
+    background: rgb(250 248 245 / .78);
+    backdrop-filter: blur(14px) saturate(1.2);
+    -webkit-backdrop-filter: blur(14px) saturate(1.2);
+    box-shadow: 0 10px 30px -18px rgb(26 25 23 / .35);
+  }
+  .brand img { height: 40px; width: auto; mix-blend-mode: multiply; }
+  nav { display: flex; gap: 26px; margin-inline: auto; }
+  nav a { text-decoration: none; font-size: .9375rem; color: var(--muted); transition: color .2s var(--ease); }
+  nav a:hover { color: var(--espresso); }
+  .cta { display: flex; gap: 8px; }
+  .cta .btn { padding: 12px 20px; }
+  @media (max-width: 1080px) { nav { display: none; } .cta { margin-left: auto; } }
+  @media (max-width: 560px) {
+    .pill { padding-left: 16px; gap: 10px; }
+    .brand img { height: 32px; }
+    .cta .btn--ghost { display: none; }
+    .cta .btn { padding: 11px 16px; font-size: .875rem; }
+  }
+</style>

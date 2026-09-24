@@ -1,0 +1,40 @@
+---
+import { portalHref, GOCABINETS_PORTAL_URL, PHONE, PHONE_HREF } from '../config';
+const ext = GOCABINETS_PORTAL_URL ? { target: '_blank', rel: 'noopener' } : {};
+const rows = [
+  ['Zero site recutting', 'Panels arrive cut, edged, System 32 drilled and labelled to your drawings.'],
+  ['Local remake backup', 'A panel wrong on site? Same-day or next-day remake at Woodridge, not a 3–4 week wait.'],
+  ['Order 24/7', 'Place and track orders through your goCabinets trade portal, nights and weekends included.'],
+  ['One counter', 'Doors, benchtops, Blum hardware and consumables on the same order.'],
+];
+---
+<section class="section trade" id="trade">
+  <div class="wrap split">
+    <div>
+      <h2 class="dual dual--sm">The builder's advantage. <b>Keep your crew moving.</b></h2>
+      <p class="lede">
+        For builders, carpenters and cabinet installers. Every hour your team spends recutting
+        on site comes out of your margin. We make sure it doesn't.
+      </p>
+      <div class="actions">
+        <a class="btn btn--light" href={portalHref} {...ext}>Access Trade Portal / Login <span aria-hidden="true">↗</span></a>
+        <a class="phone" href={PHONE_HREF}>or ring the counter on {PHONE}</a>
+      </div>
+    </div>
+    <dl class="rows">
+      {rows.map(([t, d]) => (<div><dt>{t}</dt><dd>{d}</dd></div>))}
+    </dl>
+  </div>
+</section>
+
+<style>
+  .trade { background: var(--espresso-2); color: var(--canvas); }
+  .trade .lede { color: var(--muted-dark); }
+  .phone { align-self: center; color: var(--muted-dark); font-size: .9375rem; }
+  .phone:hover { color: var(--canvas); }
+  .rows { margin: 0; }
+  .rows div { padding: 26px 0; border-top: 1px solid rgb(250 248 245 / .14); }
+  .rows div:last-child { border-bottom: 1px solid rgb(250 248 245 / .14); }
+  dt { font-weight: 600; font-size: 1.125rem; margin-bottom: 6px; }
+  dd { margin: 0; color: var(--muted-dark); font-size: .9375rem; }
+</style>

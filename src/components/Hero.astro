@@ -1,0 +1,57 @@
+---
+import { plannerHref, GOCABINETS_PLANNER_URL, ADDRESS } from '../config';
+const ext = GOCABINETS_PLANNER_URL ? { target: '_blank', rel: 'noopener' } : {};
+---
+<section class="hero wrap">
+  <div class="copy">
+    <h1 class="dual">Millimetre-Perfect Flat Pack. <b>Engineered for Living &amp; Building.</b></h1>
+    <p class="lede">
+      Custom-cut cabinetry made at our Woodridge factory, sized to your exact walls and
+      ceilings instead of 300, 600 and 900&nbsp;mm modules. For builders who can't afford
+      site recuts, and homeowners who want a true fit without joinery markups.
+    </p>
+    <div class="actions">
+      <a class="btn btn--sage" href={plannerHref} {...ext}>Launch 3D Planner <span aria-hidden="true">↗</span></a>
+      <a class="btn btn--ghost" href="#quote">Request a Quote <span aria-hidden="true">•</span></a>
+    </div>
+    <ul class="facts">
+      <li>Made in {ADDRESS.split(', ')[1]}</li>
+      <li>Blum hardware</li>
+      <li>Supply &amp; manufacture only</li>
+    </ul>
+  </div>
+  <figure class="frame">
+    <img src="/jobs/kitchen-carindale.jpg" width="900" height="1600" fetchpriority="high"
+      alt="A white gloss kitchen run with a charcoal splashback and timber floor, made by Total Cabinet Supplies in Carindale." />
+    <figcaption>Kitchen, Carindale</figcaption>
+  </figure>
+</section>
+
+<style>
+  .hero {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: clamp(40px, 5vw, 80px); align-items: center;
+    padding-block: clamp(56px, 8vw, 112px) clamp(24px, 4vw, 48px);
+  }
+  .facts {
+    list-style: none; padding: 0; margin: 48px 0 0;
+    display: flex; flex-wrap: wrap; gap: 10px 28px;
+    font-size: .875rem; color: var(--muted);
+  }
+  .facts li { display: flex; align-items: center; gap: 10px; }
+  .facts li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--sage); }
+  .frame { margin: 0; position: relative; }
+  .frame img {
+    width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 45%;
+    border-radius: 18px 18px 18px 120px;
+  }
+  .frame figcaption {
+    position: absolute; right: 18px; bottom: 18px;
+    background: rgb(250 248 245 / .9); color: var(--espresso);
+    font-size: .8125rem; padding: 8px 14px; border-radius: var(--radius-pill);
+  }
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .frame img { aspect-ratio: 4 / 3; border-radius: 16px 16px 16px 72px; }
+  }
+</style>

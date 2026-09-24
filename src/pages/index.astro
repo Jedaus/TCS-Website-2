@@ -1,326 +1,39 @@
 ---
 import '@fontsource-variable/archivo/wdth.css';
-import '@fontsource/atkinson-hyperlegible-next/400.css';
-import '@fontsource/atkinson-hyperlegible-next/500.css';
-import '@fontsource/atkinson-hyperlegible-next/600.css';
-import '@fontsource/atkinson-hyperlegible-next/700.css';
 import '../styles/tokens.css';
-
-const tabs = [
-  { label: 'Flat pack', href: '#top', current: true },
-  { label: 'The kit', href: '#kit', current: false },
-  { label: 'Materials', href: '#materials', current: false },
-  { label: 'Job photographs', href: '#photographs', current: false },
-  { label: 'How to order', href: '#order', current: false },
-  { label: 'Contact', href: '#contact', current: false },
-];
-
-const kitSpec = [
-  ['Carcass', 'Cut to your sizes and edged'],
-  ['Drilling', 'System 32, 32 mm centres'],
-  ['Board', 'HMR moisture-resistant available'],
-  ['Hardware', 'Blum hinges and runners'],
-  ['Labelling', 'Every panel marked to its cut list'],
-  ['Collection', 'Woodridge counter, or delivery to your Brisbane site'],
-];
-
-const jobTypes = [
-  {
-    name: 'Kitchens',
-    img: '/jobs/kitchen-sunnybank.jpg',
-    alt: 'A completed white gloss kitchen with overhead cupboards, oven cabinet and a peninsula bench.',
-    desc: 'Base, wall and tall cabinets cut to your plan, edged and drilled before they leave Woodridge. Doors and panels in Polytec and Laminex ranges.',
-    cap: 'Job photograph · kitchen, Sunnybank Hills',
-  },
-  {
-    name: 'Wardrobes',
-    img: '/jobs/wardrobe-carcass.jpg',
-    alt: 'The inside of a built-in wardrobe: white shelving, drawers and hanging rails, with columns of shelf holes drilled down each panel.',
-    desc: 'Carcasses, shelving and hanging rails drilled on 32 mm centres, so a shelf moves up or down without anyone drilling a new hole on site.',
-    cap: 'Job photograph · wardrobe carcass and sliding doors',
-  },
-  {
-    name: 'Vanities',
-    img: '/jobs/vanity-2pac.jpg',
-    alt: 'A white two-pack bathroom vanity with a stone top and a round basin.',
-    desc: 'Bathroom and laundry cabinetry, with HMR moisture-resistant board where the job calls for it.',
-    cap: 'Job photograph · vanity, two-pack doors',
-  },
-  {
-    name: 'Garage storage',
-    img: '/jobs/garage-storage.jpg',
-    alt: 'A run of full-height white storage cabinets along a garage wall.',
-    desc: 'Full-height storage runs cut to the opening you measured, on Blum hinges.',
-    cap: 'Job photograph · garage storage, Stretton',
-  },
-  {
-    name: 'Entertainment units',
-    img: '/jobs/entertainment-unit.jpg',
-    alt: 'A built-in timber-look entertainment unit with curved shelving either side of a television.',
-    desc: 'Wall units, shelving and curved fronts cut from your setout drawings.',
-    cap: 'Job photograph · entertainment unit, curved fronts',
-  },
-];
-
-const materials = [
-  ['Board', 'Particleboard and MDF, standard and HMR moisture-resistant'],
-  ['Finishes', 'Polytec and Laminex ranges'],
-  ['Panels', 'Flexi Panel'],
-  ['Hardware', 'Blum hinges and drawer runners'],
-  ['Drawer kits', 'Nikpol and Nightingale lines'],
-  ['At the counter', 'Silicone, hinges, drawer kits, waste bins'],
-];
-
-const steps = [
-  ['Send the cut list', 'Email your cut list or setout drawings, or bring them to the counter.'],
-  ['We quote it', 'We price the kit from your sizes and come back to you.'],
-  ['We cut and drill', 'Panels are cut, edged, drilled on the System 32 module and labelled.'],
-  ['Pick up or delivery', 'Collect at Woodridge, or we run it out to your Brisbane site.'],
-];
-
-// The kit section already cycles all five job photographs, so the strip below
-// shows two rather than repeating the whole set.
-const plates = jobTypes.filter((j) => j.name === 'Kitchens' || j.name === 'Garage storage');
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Showcase from '../components/Showcase.astro';
+import Planner3D from '../components/Planner3D.astro';
+import Comparison from '../components/Comparison.astro';
+import TradeAdvantage from '../components/TradeAdvantage.astro';
+import Materials from '../components/Materials.astro';
+import FAQ from '../components/FAQ.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+import Footer from '../components/Footer.astro';
 ---
-
-<html lang="en">
+<html lang="en-AU">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <title>Total Cabinet Supplies — Flat pack cabinetry, Woodridge QLD</title>
-    <meta
-      name="description"
-      content="Total Cabinet Supplies cuts, drills, edges and labels flat pack cabinetry at Woodridge, Queensland, for builders and cabinet installers. Supply and manufacture only."
-    />
+    <title>Total Cabinet Supplies — Custom Flat Pack Cabinetry, Woodridge QLD</title>
+    <meta name="description" content="Millimetre-perfect custom flat pack kitchens, wardrobes and vanities made at our Woodridge factory. Australian Made boards, Blum hardware, 3D planning, same-day remakes. Supply and manufacture only." />
   </head>
-
   <body id="top">
-    <div class="trim"></div>
-
-    <header class="masthead">
-      <div class="wrap masthead__row">
-        <a class="brand" href="/" aria-label="Total Cabinet Supplies, home">
-          <img src="/tcs-logo.png" width="320" height="175" alt="Total Cabinet Supplies" />
-        </a>
-        <div class="counterfacts">
-          <a href="tel:+61732991978">07 3299 1978</a>
-          <span>68 Compton Rd, Woodridge QLD</span>
-        </div>
-      </div>
-    </header>
-
-    <nav class="tabs" aria-label="Sections">
-      <div class="wrap tabs__row">
-        {tabs.map((t) => (
-          <a class="tab" href={t.href} aria-current={t.current ? 'true' : undefined}>{t.label}</a>
-        ))}
-      </div>
-    </nav>
-
+    <Header />
     <main>
-      <div class="wrap">
-        <section class="hero">
-          <div>
-            <h1 class="hero__display">Flat pack</h1>
-            <p class="hero__lede">Cut, drilled, edged and labelled. Your crew assembles it on site.</p>
-            <p class="hero__body">
-              Total Cabinet Supplies makes cabinetry to order at Woodridge and supplies it flat pack:
-              every panel cut to your sizes, drilled on the System&nbsp;32 module, edged, and marked
-              to the cut list it came from. We supply and manufacture. We do not install.
-            </p>
-
-            <div class="spec">
-              <div class="spec__head">
-                <span>In every kit</span>
-                <span>Supply only</span>
-              </div>
-              <dl class="spec__list">
-                {kitSpec.map(([term, val]) => (
-                  <div class="spec__row">
-                    <dt class="spec__term">{term}</dt>
-                    <dd class="spec__val">{val}</dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-
-            <div class="actions">
-              <a class="btn" href="tel:+61732991978">Ring 07 3299 1978</a>
-              <a class="btn btn--quiet" href="mailto:totalcabinetsupplies@gmail.com?subject=Flat%20pack%20cut%20list">Email a cut list</a>
-            </div>
-          </div>
-
-          <figure class="hero__figure">
-            <img
-              src="/jobs/wardrobe-carcass.jpg"
-              width="900"
-              height="1600"
-              alt="The inside of a built-in wardrobe supplied by Total Cabinet Supplies: white shelving, drawers and hanging rails, with columns of shelf holes drilled down each panel."
-            />
-            <figcaption class="caption">Job photograph · wardrobe carcass, shelf holes on 32 mm centres</figcaption>
-          </figure>
-        </section>
-
-        <section class="section" id="kit">
-          <div class="section__head">
-            <h2 class="section__title">The kit</h2>
-            <p class="section__note">5 job types we cut flat pack for</p>
-          </div>
-
-          <div class="kit">
-            <div class="spines" role="tablist" aria-label="Job types">
-              {jobTypes.map((j, i) => (
-                <button
-                  class="spine"
-                  role="tab"
-                  type="button"
-                  id={`spine-${i}`}
-                  aria-controls="faceout"
-                  aria-selected={i === 0 ? 'true' : 'false'}
-                  tabindex={i === 0 ? 0 : -1}
-                  data-index={i}
-                >
-                  <span>{j.name}</span>
-                  <span class="spine__no">{String(i + 1).padStart(2, '0')}</span>
-                </button>
-              ))}
-            </div>
-
-            <figure class="faceout" id="faceout" role="tabpanel" aria-labelledby="spine-0">
-              <div class="faceout__frame">
-                <img id="faceout-img" src={jobTypes[0].img} alt={jobTypes[0].alt} width="1100" height="825" />
-              </div>
-              <figcaption class="faceout__text">
-                <h3 class="faceout__name" id="faceout-name">{jobTypes[0].name}</h3>
-                <p class="faceout__desc" id="faceout-desc">{jobTypes[0].desc}</p>
-              </figcaption>
-            </figure>
-          </div>
-        </section>
-
-        <section class="section" id="materials">
-          <div class="section__head">
-            <h2 class="section__title">Materials &amp; hardware</h2>
-            <p class="section__note">Brands we buy and supply</p>
-          </div>
-          <dl class="matrix">
-            {materials.map(([term, val]) => (
-              <div class="matrix__row">
-                <dt class="spec__term">{term}</dt>
-                <dd class="spec__val">{val}</dd>
-              </div>
-            ))}
-          </dl>
-        </section>
-
-        <section class="section" id="photographs">
-          <div class="section__head">
-            <h2 class="section__title">Job photographs</h2>
-            <p class="section__note">2 of 138 on file</p>
-          </div>
-          <div class="plates">
-            {plates.map((p) => (
-              <figure class="plate">
-                <img src={p.img} alt={p.alt} width="1100" height="825" loading="lazy" />
-                <figcaption class="caption">{p.cap}</figcaption>
-              </figure>
-            ))}
-          </div>
-        </section>
-
-        <section class="section" id="order">
-          <div class="section__head">
-            <h2 class="section__title">How to order</h2>
-            <p class="section__note">Counter, phone, email</p>
-          </div>
-          <div class="steps">
-            {steps.map(([name, body], i) => (
-              <div class="step">
-                <span class="step__no">{String(i + 1).padStart(2, '0')}</span>
-                <h3 class="step__name">{name}</h3>
-                <p>{body}</p>
-              </div>
-            ))}
-          </div>
-
-          <div class="plainly">
-            <p>
-              <strong>There is no online ordering, trade login or automatic quote calculator on this site.</strong>
-              Quotes and orders are handled at the counter, by phone, and by email, so what you are told is what
-              a person at Woodridge has actually checked.
-            </p>
-          </div>
-        </section>
-      </div>
-
-      <section class="band" id="contact">
-        <div class="wrap footer">
-          <dl class="footer__grid">
-            <div>
-              <dt class="footer__label">Counter</dt>
-              <dd class="footer__val">68 Compton Rd<br />Woodridge QLD</dd>
-            </div>
-            <div>
-              <dt class="footer__label">Phone</dt>
-              <dd class="footer__val"><a href="tel:+61732991978">07 3299 1978</a></dd>
-            </div>
-            <div>
-              <dt class="footer__label">Email</dt>
-              <dd class="footer__val"><a href="mailto:totalcabinetsupplies@gmail.com">totalcabinetsupplies@gmail.com</a></dd>
-            </div>
-          </dl>
-          <hr class="footer__rule" />
-          <div class="footer__fine">
-            <p>Total Cabinet Supplies supplies and manufactures cabinetry. We do not install.</p>
-            <p>Flat pack · Woodridge, Queensland</p>
-          </div>
-        </div>
-      </section>
+      <Hero />
+      <Showcase />
+      <Planner3D />
+      <Comparison />
+      <TradeAdvantage />
+      <Materials />
+      <FAQ />
+      <QuoteForm />
     </main>
-
-    <script is:inline define:vars={{ jobTypes }}>
-      const spines = Array.from(document.querySelectorAll('.spine'));
-      const panel = document.getElementById('faceout');
-      const img = document.getElementById('faceout-img');
-      const name = document.getElementById('faceout-name');
-      const desc = document.getElementById('faceout-desc');
-      let active = 0;
-
-      function select(next, focus) {
-        if (next === active) return;
-        const job = jobTypes[next];
-        spines.forEach((s, i) => {
-          s.setAttribute('aria-selected', i === next ? 'true' : 'false');
-          s.tabIndex = i === next ? 0 : -1;
-        });
-        panel.setAttribute('aria-labelledby', 'spine-' + next);
-        panel.classList.add('is-turning');
-        window.setTimeout(() => {
-          img.src = job.img;
-          img.alt = job.alt;
-          name.textContent = job.name;
-          desc.textContent = job.desc;
-          panel.classList.remove('is-turning');
-        }, 170);
-        active = next;
-        if (focus) spines[next].focus();
-      }
-
-      spines.forEach((s, i) => {
-        s.addEventListener('click', () => select(i, false));
-        s.addEventListener('keydown', (e) => {
-          if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
-            e.preventDefault();
-            select((i + 1) % spines.length, true);
-          } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
-            e.preventDefault();
-            select((i - 1 + spines.length) % spines.length, true);
-          }
-        });
-      });
-    </script>
+    <Footer />
   </body>
 </html>

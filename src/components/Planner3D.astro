@@ -1,0 +1,79 @@
+---
+import { plannerHref, GOCABINETS_PLANNER_URL, TUTORIAL_YOUTUBE_ID, PHONE, PHONE_HREF } from '../config';
+const ext = GOCABINETS_PLANNER_URL ? { target: '_blank', rel: 'noopener' } : {};
+const steps = [
+  ['Draw your room', 'Enter wall lengths and ceiling height, or trace a sketch.'],
+  ['Drop cabinets in', 'Drag base, wall and tall units into place and see them in 3D.'],
+  ['Send it to us', 'Your layout arrives at the Woodridge counter ready to quote.'],
+];
+---
+<section class="section section--sand" id="planner">
+  <div class="wrap split">
+    <div>
+      <h2 class="dual dual--sm">Plan it in 3D. <b>We cut it to the millimetre.</b></h2>
+      <p class="lede">
+        Our goCabinets planner lets builders and homeowners lay out a kitchen, laundry or wardrobe
+        in the browser, then hands the exact sizes straight to our factory. No modular fillers,
+        no guesswork at the counter.
+      </p>
+      <div class="actions">
+        <a class="btn btn--sage" href={plannerHref} {...ext}>Launch 3D Planner <span aria-hidden="true">↗</span></a>
+        <button class="btn btn--ghost" type="button" data-open-video>Watch 3D Tutorial Video <span aria-hidden="true">▶</span></button>
+      </div>
+    </div>
+    <ol class="card steps">
+      {steps.map(([t, d], i) => (
+        <li><span class="n">{i + 1}</span><div><h3>{t}</h3><p>{d}</p></div></li>
+      ))}
+    </ol>
+  </div>
+
+  <dialog id="tutorial" aria-label="3D planner tutorial video">
+    <form method="dialog"><button class="close" aria-label="Close video">×</button></form>
+    {TUTORIAL_YOUTUBE_ID
+      ? <div class="video" data-src={`https://www.youtube-nocookie.com/embed/${TUTORIAL_YOUTUBE_ID}?autoplay=1&rel=0`}></div>
+      : <div class="soon"><h3>The tutorial video is on its way.</h3><p>In the meantime, ring the counter on <a href={PHONE_HREF}>{PHONE}</a> and we'll walk you through the planner.</p></div>}
+  </dialog>
+</section>
+
+<script>
+  const dlg = document.getElementById('tutorial') as HTMLDialogElement;
+  const box = dlg.querySelector<HTMLElement>('.video');
+  document.querySelector('[data-open-video]')!.addEventListener('click', () => {
+    // load the player only on open, and drop it on close so playback stops
+    if (box) box.innerHTML = `<iframe src="${box.dataset.src}" title="3D planner tutorial" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+    dlg.showModal();
+  });
+  dlg.addEventListener('close', () => { if (box) box.innerHTML = ''; });
+  dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+</script>
+
+<style>
+  .steps { list-style: none; margin: 0; padding: 12px 32px; }
+  .steps li { display: flex; gap: 22px; padding: 26px 0; border-bottom: 1px solid var(--rule); }
+  .steps li:last-child { border-bottom: 0; }
+  .n {
+    flex: none; width: 40px; height: 40px; border-radius: 50%;
+    display: grid; place-items: center;
+    background: var(--sand); color: var(--sage); font-weight: 700;
+  }
+  .steps h3 { font-size: 1.125rem; font-weight: 600; margin-bottom: 4px; }
+  .steps p { color: var(--muted); font-size: .9375rem; }
+
+  dialog {
+    width: min(960px, 92vw); padding: 0; border: 0; border-radius: var(--radius-card);
+    background: var(--espresso); color: var(--canvas); overflow: hidden;
+  }
+  dialog::backdrop { background: rgb(26 25 23 / .72); backdrop-filter: blur(4px); }
+  dialog[open] { animation: rise .35s var(--ease); }
+  @keyframes rise { from { opacity: 0; transform: translateY(12px); } }
+  .close {
+    position: absolute; top: 10px; right: 10px; z-index: 1;
+    width: 40px; height: 40px; border-radius: 50%; border: 0; cursor: pointer;
+    background: rgb(250 248 245 / .14); color: var(--canvas); font-size: 1.5rem; line-height: 1;
+  }
+  .video :global(iframe), .video { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; }
+  .soon { padding: 64px 48px; max-width: 52ch; }
+  .soon h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 12px; }
+  .soon p { color: var(--muted-dark); }
+</style>

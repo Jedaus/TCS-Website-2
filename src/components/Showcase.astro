@@ -1,0 +1,84 @@
+---
+const groups = [
+  { id: 'kitchens', label: 'Kitchens', items: [
+    { src: '/jobs/kitchen-sunnybank.jpg', w: 1100, h: 825, place: 'Sunnybank Hills', note: 'White gloss, U-shape with peninsula', alt: 'A white gloss U-shaped kitchen with a peninsula bench.' },
+    { src: '/jobs/kitchen-calamvale.jpg', w: 1100, h: 618, place: 'Calamvale', note: 'White fingergrain matt doors, 40 mm stone top', alt: 'A kitchen with white matt doors, a dark stone benchtop and a grey splashback.' },
+    { src: '/jobs/kitchen-springfield.jpg', w: 1100, h: 618, place: 'Springfield', note: 'Mocha fineline, laminate benchtop', alt: 'A dark timber-look U-shaped kitchen with a pale laminate benchtop.' },
+  ]},
+  { id: 'wardrobes', label: 'Wardrobes', items: [
+    { src: '/jobs/wir-calamvale.jpg', w: 1100, h: 825, place: 'Calamvale', note: 'Walk-in robe with jewellery island', alt: 'A white walk-in robe with drawers, hanging rails and a central island with divided trays.' },
+    { src: '/jobs/wir-carindale.jpg', w: 1100, h: 618, place: 'Carindale', note: 'Walk-in robe, open shelving', alt: 'A white walk-in robe with open shelving, hanging rails and drawers.' },
+    { src: '/jobs/wardrobe-carcass.jpg', w: 900, h: 1600, place: 'Brisbane', note: 'Sliding-door built-in, 32 mm drilled', alt: 'A built-in wardrobe with sliding doors, adjustable shelves and drawers.' },
+  ]},
+  { id: 'more', label: 'Vanities & more', items: [
+    { src: '/jobs/vanity-2pac.jpg', w: 1100, h: 825, place: 'Brisbane', note: 'Vanity refacing, white two-pack', alt: 'A white two-pack bathroom vanity with a round basin.' },
+    { src: '/jobs/garage-storage.jpg', w: 1100, h: 825, place: 'Stretton', note: 'Full-height garage storage', alt: 'A run of full-height white storage cabinets along a garage wall.' },
+    { src: '/jobs/entertainment-unit.jpg', w: 1100, h: 825, place: 'Brisbane', note: 'Curved entertainment unit', alt: 'A timber-look entertainment unit with curved shelving either side of a television.' },
+  ]},
+];
+---
+<section class="section" id="portfolio">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="dual dual--sm">Made in Woodridge. <b>Fitted all over Brisbane.</b></h2>
+      <div class="tabs" role="tablist" aria-label="Project type">
+        {groups.map((g, i) => (
+          <button type="button" role="tab" id={`tab-${g.id}`} aria-controls={`panel-${g.id}`}
+            aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{g.label}</button>
+        ))}
+      </div>
+    </div>
+
+    {groups.map((g, i) => (
+      <div class="grid" role="tabpanel" id={`panel-${g.id}`} aria-labelledby={`tab-${g.id}`} hidden={i !== 0}>
+        {g.items.map((it) => (
+          <figure class="card item">
+            <img src={it.src} width={it.w} height={it.h} alt={it.alt} loading="lazy" />
+            <figcaption><span>{it.place}</span>{it.note}</figcaption>
+          </figure>
+        ))}
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+  const tabs = [...document.querySelectorAll<HTMLButtonElement>('#portfolio [role=tab]')];
+  function show(t: HTMLButtonElement) {
+    tabs.forEach((x) => {
+      const on = x === t;
+      x.setAttribute('aria-selected', String(on));
+      x.tabIndex = on ? 0 : -1;
+      document.getElementById(x.getAttribute('aria-controls')!)!.hidden = !on;
+    });
+  }
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => show(t));
+    t.addEventListener('keydown', (e) => {
+      const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!d) return;
+      const next = tabs[(i + d + tabs.length) % tabs.length];
+      show(next); next.focus();
+    });
+  });
+</script>
+
+<style>
+  .head { display: flex; align-items: end; justify-content: space-between; gap: 32px; flex-wrap: wrap; margin-bottom: 56px; }
+  .tabs { display: flex; gap: 6px; padding: 6px; background: var(--sand); border-radius: 999px; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
+  .tabs button {
+    font: 500 .9375rem/1 var(--face); color: var(--muted);
+    padding: 12px 20px; border: 0; border-radius: 999px; background: transparent; cursor: pointer; white-space: nowrap;
+    transition: background-color .25s var(--ease), color .25s var(--ease);
+  }
+  .tabs button:hover { color: var(--espresso); }
+  .tabs button[aria-selected='true'] { background: var(--white); color: var(--espresso); box-shadow: 0 4px 14px -8px rgb(26 25 23 / .4); }
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+  .item { margin: 0; overflow: hidden; }
+  .item img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+  .item figcaption { padding: 20px 22px 24px; color: var(--muted); font-size: .9375rem; }
+  .item figcaption span { display: block; color: var(--espresso); font-weight: 600; margin-bottom: 4px; }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+  @media (max-width: 480px) { .tabs button { padding: 11px 13px; font-size: .875rem; } }
+  @media (min-width: 560px) and (max-width: 900px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+</style>

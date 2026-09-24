@@ -1,0 +1,81 @@
+---
+import { EMAIL, PHONE, PHONE_HREF } from '../config';
+---
+<section class="section section--sand" id="quote">
+  <div class="wrap split top">
+    <div>
+      <h2 class="dual dual--sm">Send us your plan. <b>Get an exact quote.</b></h2>
+      <p class="lede">
+        Rough sketches are fine. Tell us what you're building and we'll come back with sizes,
+        materials and a price.
+      </p>
+      <p class="note">
+        TCS is a supply-and-manufacture specialist. For customers requiring professional
+        installation, we connect you with our network of vetted, trusted Brisbane local trade
+        carpenters and cabinet installers.
+      </p>
+      <p class="direct">Prefer to talk? <a href={PHONE_HREF}>{PHONE}</a></p>
+    </div>
+
+    <form class="card form" id="quote-form" data-email={EMAIL}>
+      <div class="row">
+        <label>Name<input name="name" autocomplete="name" required /></label>
+        <label>Phone<input name="phone" type="tel" autocomplete="tel" /></label>
+      </div>
+      <label>Email<input name="email" type="email" autocomplete="email" required /></label>
+      <div class="row">
+        <label>I'm a
+          <select name="who">
+            <option>Builder / trade</option>
+            <option>Homeowner / renovator</option>
+          </select>
+        </label>
+        <label>Project
+          <select name="project">
+            <option>Kitchen</option>
+            <option>Wardrobe</option>
+            <option>Vanity / laundry</option>
+            <option>Other</option>
+          </select>
+        </label>
+      </div>
+      <label>Dimensions &amp; details
+        <textarea name="details" rows="5" placeholder="Wall lengths, ceiling height, finishes you like, when you need it."></textarea>
+      </label>
+      <button class="btn btn--dark" type="submit">Request a Quote <span aria-hidden="true">•</span></button>
+      <p class="hint">This opens your email app with your details filled in. Attach sketches, drawings or site photos there before sending.</p>
+    </form>
+  </div>
+</section>
+
+<script>
+  // ponytail: no backend yet, so the form hands off to the visitor's mail app.
+  // Swap for a form service (Formspree, Netlify Forms) when file uploads are needed.
+  const form = document.getElementById('quote-form') as HTMLFormElement;
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const f = new FormData(form);
+    const body = [...f.entries()].map(([k, v]) => `${k}: ${v}`).join('\n');
+    location.href = `mailto:${form.dataset.email}?subject=${encodeURIComponent(`Quote request — ${f.get('project')}`)}&body=${encodeURIComponent(body)}`;
+  });
+</script>
+
+<style>
+  .top { align-items: start; }
+  .note { margin-top: 32px; padding-left: 0; color: var(--muted); font-size: .9375rem; max-width: 52ch; }
+  .direct { margin-top: 24px; font-weight: 600; }
+  .form { padding: 36px; display: grid; gap: 20px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  label { display: grid; gap: 8px; font-size: .875rem; font-weight: 600; }
+  input, select, textarea {
+    font: 400 1rem/1.4 var(--face); color: var(--espresso);
+    padding: 14px 16px; border: 1px solid var(--rule); border-radius: 10px; background: var(--canvas);
+    transition: border-color .2s var(--ease), background-color .2s var(--ease);
+  }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--sage); background: var(--white); }
+  textarea { resize: vertical; }
+  ::placeholder { color: var(--muted); opacity: 1; }
+  .form .btn { justify-self: start; }
+  .hint { color: var(--muted); font-size: .8125rem; }
+  @media (max-width: 560px) { .row { grid-template-columns: 1fr; } .form { padding: 24px; } }
+</style>
