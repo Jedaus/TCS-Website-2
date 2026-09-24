@@ -7,9 +7,9 @@ const brands = [
   ['Australian Made', 'High-density boards, standard or HMR'],
 ];
 ---
-<section class="section section--sand" id="materials">
+<section class="section band" id="materials">
   <div class="wrap">
-    <h2 class="dual dual--sm head">Premium materials. <b>Brands you already trust.</b></h2>
+    <h2 class="dual head">Premium materials. <b>Brands you already trust.</b></h2>
     <ul class="brands">
       {brands.map(([name, what]) => (<li class="card"><span>{name}</span>{what}</li>))}
     </ul>
@@ -25,15 +25,15 @@ const brands = [
   .head { max-width: 20ch; margin-bottom: 56px; }
   .brands { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
   .brands li { padding: 32px 28px; color: var(--muted); font-size: .9375rem; }
-  .brands span { display: block; color: var(--espresso); font-size: 1.5rem; font-weight: 600; letter-spacing: -.02em; margin-bottom: 10px; }
+  .brands span { display: block; color: var(--ink); font-size: 1.5rem; font-weight: 600; letter-spacing: -.02em; margin-bottom: 10px; }
   .visit {
     display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; align-items: baseline;
     margin-top: 48px; padding: 28px 32px; text-decoration: none;
-    border-radius: var(--radius-card); background: var(--white); border: 1px solid var(--rule);
+    border-radius: var(--radius); background: #fff; border: 1px solid var(--rule);
     transition: border-color .25s var(--ease);
   }
-  .visit:hover { border-color: var(--sage); }
-  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--sage); }
+  .visit:hover { border-color: var(--accent); }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
   .visit strong { font-weight: 600; font-size: 1.125rem; }
   .where { grid-column: 2; color: var(--muted); font-size: .9375rem; max-width: 64ch; }
   @media (max-width: 900px) { .brands { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

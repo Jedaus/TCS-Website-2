@@ -1,79 +1,74 @@
 ---
 name: Total Cabinet Supplies
-description: Warm, editorial one-page site for custom flat pack cabinetry.
+description: Bright, photo-led one-page site for custom flat pack cabinetry, modelled on luxofloors.com.au.
 colors:
-  canvas: "#FAF8F5"
-  canvas-2: "#F5F2EC"
-  white: "#FFFFFF"
-  sand: "#EFECE5"
-  sand-2: "#E8E3DA"
-  espresso: "#1A1917"
-  espresso-2: "#22201D"
-  muted: "#5C5750"
-  muted-dark: "#B9B2A6"
-  sage: "#4E6B5B"
-  sage-deep: "#3F5849"
-  rule: "#E5E0D8"
+  bg: "#FFFFFF"
+  band: "#EEF4F3"
+  tint: "#E3ECEA"
+  ink: "#182629"
+  muted: "#51615F"
+  dark: "#1C2A2D"
+  muted-dark: "#A9B8B6"
+  accent: "#3B7383"
+  accent-deep: "#2F5E6B"
+  rule: "#DCE5E3"
 typography:
   display:
-    fontFamily: "'Archivo Variable', sans-serif"
-    fontSize: "clamp(2.25rem, 5vw, 4rem)"
+    fontFamily: "'Work Sans Variable', sans-serif"
+    fontSize: "clamp(2.1rem, 4.4vw, 3.4rem)"
     fontWeight: 300
-    lineHeight: 1.04
-    letterSpacing: "-0.03em"
+    lineHeight: 1.08
+    letterSpacing: "-0.02em"
   body:
-    fontFamily: "'Archivo Variable', sans-serif"
+    fontFamily: "'Work Sans Variable', sans-serif"
     fontSize: "1.0625rem"
     fontWeight: 400
     lineHeight: 1.6
 rounded:
   card: "16px"
-  pill: "4px 22px 22px 22px"
+  pill: "999px"
   footer: "32px"
 components:
-  button-primary:
-    backgroundColor: "{colors.espresso}"
-    textColor: "{colors.canvas}"
-    rounded: "{rounded.pill}"
-    padding: "16px 26px"
   button-accent:
-    backgroundColor: "{colors.sage}"
-    textColor: "{colors.white}"
+    backgroundColor: "{colors.accent}"
+    textColor: "{colors.bg}"
     rounded: "{rounded.pill}"
-    padding: "16px 26px"
+    padding: "13px 20px"
+  button-white:
+    backgroundColor: "{colors.bg}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.pill}"
+    padding: "13px 20px"
 ---
 
 # Design System: Total Cabinet Supplies
 
-Supersedes the earlier two-ink trade catalogue system. Direction is client-pinned in `CLAUDE.md` §4 (Warm Stone & Sand, inspired by luxofloors.com.au).
+Supersedes the Warm Stone system. Structure modelled on luxofloors.com.au at the client's request; the accent is TCS's own, drawn from the logo navy.
 
 ## Overview
 
-Warm alabaster canvas, generous whitespace, editorial dual-weight headlines, and real job photography in a few curated places rather than dense grids. A deliberate contrast to Flatpax's dark, cluttered catalogue.
+White and airy, led by a few very large photographs rather than many small ones. The opposite of Flatpax's black-and-red catalogue. Section rhythm: full-bleed photo, white, full-bleed photo columns, pale band, white, full-bleed photo, pale band, white, pale band, dark footer.
 
 ## Colors
 
-Canvas and sand carry the page; espresso carries text, the trade section and the footer; sage is the single accent for primary actions and small markers. All text pairs meet WCAG AA (lowest measured 4.97:1).
+White carries the page, a pale cool band separates sections, ink carries text, slate teal is the only accent (buttons, the fixed header tab, step numbers). Lowest measured text contrast passes AA.
 
 ## Typography
 
-Archivo Variable only, self-hosted. Headlines pair a 300 weight line with a 700 weight line in the same heading (`.dual` with `<b>`). Tabular lining figures site-wide for dimensions.
+Work Sans Variable only. Headlines pair a 300 line with a 600 line. One large 500-weight manifesto paragraph. Tabular figures site-wide.
 
-## Layout
+## Imagery
 
-Sections breathe at `clamp(88px, 11vw, 140px)`. Split layouts (copy + visual) collapse to one column under 900px. Max content width 1280px.
+- Photos from the client archive at native resolution, never upscaled; provenance embedded in each file.
+- White text over a photo sits on a neutral near-black scrim (`rgb(15 17 17)`), and every photo container has a dark background fallback so text survives a failed image load.
 
 ## Shapes
 
-Cards 16px radius. Buttons use the asymmetric pill `4px 22px 22px 22px`. Footer has a 32px arched top. The hero photo takes a large 120px lower-left curve.
-
-## Components
-
-Floating glass pill header (sticky, blur, soft shadow, no border). Showcase tabs as a segmented control. Tutorial video in a native `<dialog>`. FAQ with native `<details>`.
+Full pill buttons with a trailing dot. 16px cards. Logo sits in a white tab (bottom-right radius 24px) because the mark only works on light grounds; the menu tab mirrors it on the right. Footer has a 32px arched top.
 
 ## Do's and Don'ts
 
-- Do keep photography sparse: one hero image, three cards per showcase tab.
-- Do keep the logo on light grounds only, with `mix-blend-mode: multiply`.
-- Don't use Inter, Roboto or system fonts; gradient backgrounds; cards inside cards; grey body text on coloured grounds; bouncing motion.
+- Do keep photos few and large.
+- Don't use Inter, Roboto or system fonts; purple or blue gradient backgrounds; cards inside cards; grey body text on coloured grounds; bouncing motion.
+- Don't place the logo directly on a photo or dark ground.
 - Don't show supplier logos until permission is confirmed.

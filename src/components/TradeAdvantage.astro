@@ -3,38 +3,42 @@ import { portalHref, GOCABINETS_PORTAL_URL, PHONE, PHONE_HREF } from '../config'
 const ext = GOCABINETS_PORTAL_URL ? { target: '_blank', rel: 'noopener' } : {};
 const rows = [
   ['Zero site recutting', 'Panels arrive cut, edged, System 32 drilled and labelled to your drawings.'],
-  ['Local remake backup', 'A panel wrong on site? Same-day or next-day remake at Woodridge, not a 3–4 week wait.'],
-  ['Order 24/7', 'Place and track orders through your goCabinets trade portal, nights and weekends included.'],
-  ['One counter', 'Doors, benchtops, Blum hardware and consumables on the same order.'],
+  ['Local remake backup', 'A panel wrong on site? Same-day or next-day remake at Woodridge.'],
+  ['Order 24/7', 'Place and track orders through your goCabinets trade portal.'],
+  ['One counter', 'Doors, benchtops, Blum hardware and consumables on one order.'],
 ];
 ---
-<section class="section trade" id="trade">
-  <div class="wrap split">
-    <div>
-      <h2 class="dual dual--sm">The builder's advantage. <b>Keep your crew moving.</b></h2>
+<section class="trade" id="trade">
+  <img class="photo" src="/jobs/garage-storage.jpg" width="1600" height="1200" alt="" loading="lazy" />
+  <div class="wrap inner">
+    <div class="copy">
+      <h2 class="dual">The builder's advantage. <b>Keep your crew moving.</b></h2>
       <p class="lede">
         For builders, carpenters and cabinet installers. Every hour your team spends recutting
         on site comes out of your margin. We make sure it doesn't.
       </p>
+      <dl class="rows">
+        {rows.map(([t, d]) => (<div><dt>{t}</dt><dd>{d}</dd></div>))}
+      </dl>
       <div class="actions">
-        <a class="btn btn--light" href={portalHref} {...ext}>Access Trade Portal / Login <span aria-hidden="true">↗</span></a>
-        <a class="phone" href={PHONE_HREF}>or ring the counter on {PHONE}</a>
+        <a class="btn btn--white" href={portalHref} {...ext}>Access Trade Portal / Login <span aria-hidden="true">↗</span></a>
+        <a class="btn btn--line-light" href={PHONE_HREF}>Call {PHONE} <span class="dot" aria-hidden="true"></span></a>
       </div>
     </div>
-    <dl class="rows">
-      {rows.map(([t, d]) => (<div><dt>{t}</dt><dd>{d}</dd></div>))}
-    </dl>
   </div>
 </section>
 
 <style>
-  .trade { background: var(--espresso-2); color: var(--canvas); }
-  .trade .lede { color: var(--muted-dark); }
-  .phone { align-self: center; color: var(--muted-dark); font-size: .9375rem; }
-  .phone:hover { color: var(--canvas); }
-  .rows { margin: 0; }
-  .rows div { padding: 26px 0; border-top: 1px solid rgb(250 248 245 / .14); }
-  .rows div:last-child { border-bottom: 1px solid rgb(250 248 245 / .14); }
-  dt { font-weight: 600; font-size: 1.125rem; margin-bottom: 6px; }
-  dd { margin: 0; color: var(--muted-dark); font-size: .9375rem; }
+  .trade { background: var(--dark); position: relative; color: #fff; isolation: isolate; padding-block: var(--section); }
+  .photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+  /* neutral scrim, dark behind the copy on the left, lifting so the photo shows on the right */
+  .trade::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to right, rgb(var(--scrim) / .8) 0%, rgb(var(--scrim) / .66) 42%, rgb(var(--scrim) / .18) 78%, rgb(var(--scrim) / .08) 100%); }
+  @media (max-width: 900px) { .trade::before { background: rgb(var(--scrim) / .7); } }
+  .copy { max-width: 620px; }
+  .lede { color: rgb(255 255 255 / .86); }
+  .rows { margin: 40px 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 24px 32px; }
+  .rows div { border-top: 1px solid rgb(255 255 255 / .28); padding-top: 14px; }
+  dt { font-weight: 600; margin-bottom: 4px; }
+  dd { margin: 0; color: rgb(255 255 255 / .82); font-size: .9375rem; line-height: 1.5; }
+  @media (max-width: 560px) { .rows { grid-template-columns: 1fr; } }
 </style>

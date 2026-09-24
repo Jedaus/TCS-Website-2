@@ -1,84 +1,46 @@
 ---
-const groups = [
-  { id: 'kitchens', label: 'Kitchens', items: [
-    { src: '/jobs/kitchen-sunnybank.jpg', w: 1100, h: 825, place: 'Sunnybank Hills', note: 'White gloss, U-shape with peninsula', alt: 'A white gloss U-shaped kitchen with a peninsula bench.' },
-    { src: '/jobs/kitchen-calamvale.jpg', w: 1100, h: 618, place: 'Calamvale', note: 'White fingergrain matt doors, 40 mm stone top', alt: 'A kitchen with white matt doors, a dark stone benchtop and a grey splashback.' },
-    { src: '/jobs/kitchen-springfield.jpg', w: 1100, h: 618, place: 'Springfield', note: 'Mocha fineline, laminate benchtop', alt: 'A dark timber-look U-shaped kitchen with a pale laminate benchtop.' },
-  ]},
-  { id: 'wardrobes', label: 'Wardrobes', items: [
-    { src: '/jobs/wir-calamvale.jpg', w: 1100, h: 825, place: 'Calamvale', note: 'Walk-in robe with jewellery island', alt: 'A white walk-in robe with drawers, hanging rails and a central island with divided trays.' },
-    { src: '/jobs/wir-carindale.jpg', w: 1100, h: 618, place: 'Carindale', note: 'Walk-in robe, open shelving', alt: 'A white walk-in robe with open shelving, hanging rails and drawers.' },
-    { src: '/jobs/wardrobe-carcass.jpg', w: 900, h: 1600, place: 'Brisbane', note: 'Sliding-door built-in, 32 mm drilled', alt: 'A built-in wardrobe with sliding doors, adjustable shelves and drawers.' },
-  ]},
-  { id: 'more', label: 'Vanities & more', items: [
-    { src: '/jobs/vanity-2pac.jpg', w: 1100, h: 825, place: 'Brisbane', note: 'Vanity refacing, white two-pack', alt: 'A white two-pack bathroom vanity with a round basin.' },
-    { src: '/jobs/garage-storage.jpg', w: 1100, h: 825, place: 'Stretton', note: 'Full-height garage storage', alt: 'A run of full-height white storage cabinets along a garage wall.' },
-    { src: '/jobs/entertainment-unit.jpg', w: 1100, h: 825, place: 'Brisbane', note: 'Curved entertainment unit', alt: 'A timber-look entertainment unit with curved shelving either side of a television.' },
-  ]},
+import { plannerHref, GOCABINETS_PLANNER_URL } from '../config';
+const ext = GOCABINETS_PLANNER_URL ? { target: '_blank', rel: 'noopener' } : {};
+const cols = [
+  { title: 'Kitchens', place: 'Carindale', src: '/jobs/kitchen-carindale.jpg', w: 540, h: 960, pos: '50% 60%',
+    body: 'Base, wall and tall cabinets cut to your plan, with Polytec and Laminex doors.',
+    alt: 'A white gloss kitchen run with a charcoal splashback and timber floor, made by Total Cabinet Supplies in Carindale.' },
+  { title: 'Wardrobes', place: 'Brisbane', src: '/jobs/wardrobe-carcass.jpg', w: 1125, h: 2000, pos: '40% 55%',
+    body: 'Built-ins and walk-in robes, System 32 drilled so shelves move without new holes.',
+    alt: 'A built-in wardrobe with sliding doors, adjustable shelves, hanging rails and drawers.' },
+  { title: 'Vanities', place: 'Brisbane', src: '/jobs/vanity-marble.jpg', w: 1080, h: 1440, pos: '50% 60%',
+    body: 'Floating and floor-standing vanities, with HMR moisture-resistant board for wet areas.',
+    alt: 'A white floating vanity with an integrated basin and mirrored cabinet in a marble-tiled bathroom.' },
 ];
 ---
-<section class="section" id="portfolio">
-  <div class="wrap">
-    <div class="head">
-      <h2 class="dual dual--sm">Made in Woodridge. <b>Fitted all over Brisbane.</b></h2>
-      <div class="tabs" role="tablist" aria-label="Project type">
-        {groups.map((g, i) => (
-          <button type="button" role="tab" id={`tab-${g.id}`} aria-controls={`panel-${g.id}`}
-            aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{g.label}</button>
-        ))}
+<section id="portfolio" class="cols" aria-label="Our work">
+  {cols.map((c) => (
+    <article class="col">
+      <img src={c.src} width={c.w} height={c.h} alt={c.alt} loading="lazy" style={`object-position:${c.pos}`} />
+      <div class="text">
+        <h2>{c.title}</h2>
+        <p>{c.body}</p>
+        <div class="row">
+          <a class="btn btn--white" href={plannerHref} {...ext}>Plan in 3D <span aria-hidden="true">↗</span></a>
+          <a class="btn btn--accent" href="#quote">Get a quote <span class="dot" aria-hidden="true"></span></a>
+        </div>
       </div>
-    </div>
-
-    {groups.map((g, i) => (
-      <div class="grid" role="tabpanel" id={`panel-${g.id}`} aria-labelledby={`tab-${g.id}`} hidden={i !== 0}>
-        {g.items.map((it) => (
-          <figure class="card item">
-            <img src={it.src} width={it.w} height={it.h} alt={it.alt} loading="lazy" />
-            <figcaption><span>{it.place}</span>{it.note}</figcaption>
-          </figure>
-        ))}
-      </div>
-    ))}
-  </div>
+      <span class="place">{c.place}</span>
+    </article>
+  ))}
 </section>
 
-<script>
-  const tabs = [...document.querySelectorAll<HTMLButtonElement>('#portfolio [role=tab]')];
-  function show(t: HTMLButtonElement) {
-    tabs.forEach((x) => {
-      const on = x === t;
-      x.setAttribute('aria-selected', String(on));
-      x.tabIndex = on ? 0 : -1;
-      document.getElementById(x.getAttribute('aria-controls')!)!.hidden = !on;
-    });
-  }
-  tabs.forEach((t, i) => {
-    t.addEventListener('click', () => show(t));
-    t.addEventListener('keydown', (e) => {
-      const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
-      if (!d) return;
-      const next = tabs[(i + d + tabs.length) % tabs.length];
-      show(next); next.focus();
-    });
-  });
-</script>
-
 <style>
-  .head { display: flex; align-items: end; justify-content: space-between; gap: 32px; flex-wrap: wrap; margin-bottom: 56px; }
-  .tabs { display: flex; gap: 6px; padding: 6px; background: var(--sand); border-radius: 999px; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
-  .tabs button {
-    font: 500 .9375rem/1 var(--face); color: var(--muted);
-    padding: 12px 20px; border: 0; border-radius: 999px; background: transparent; cursor: pointer; white-space: nowrap;
-    transition: background-color .25s var(--ease), color .25s var(--ease);
-  }
-  .tabs button:hover { color: var(--espresso); }
-  .tabs button[aria-selected='true'] { background: var(--white); color: var(--espresso); box-shadow: 0 4px 14px -8px rgb(26 25 23 / .4); }
-  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
-  .item { margin: 0; overflow: hidden; }
-  .item img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
-  .item figcaption { padding: 20px 22px 24px; color: var(--muted); font-size: .9375rem; }
-  .item figcaption span { display: block; color: var(--espresso); font-weight: 600; margin-bottom: 4px; }
-  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
-  @media (max-width: 480px) { .tabs button { padding: 11px 13px; font-size: .875rem; } }
-  @media (min-width: 560px) and (max-width: 900px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .col { background: var(--dark); position: relative; min-height: clamp(560px, 88vh, 820px); color: #fff; isolation: isolate; overflow: hidden; }
+  .col img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform 1.2s var(--ease); }
+  .col:hover img { transform: scale(1.03); }
+  /* neutral scrim behind the copy at the top */
+  .col::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to bottom, rgb(var(--scrim) / .72) 0%, rgb(var(--scrim) / .42) 36%, transparent 64%); }
+  .text { padding: clamp(32px, 3.5vw, 48px); }
+  h2 { font-size: clamp(1.9rem, 2.6vw, 2.5rem); font-weight: 600; letter-spacing: -.02em; }
+  .text p { margin-top: 12px; max-width: 34ch; font-size: 1rem; line-height: 1.5; }
+  .row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+  .place { position: absolute; left: clamp(32px, 3.5vw, 48px); bottom: 24px; font-size: .8125rem; background: rgb(255 255 255 / .92); color: var(--ink); padding: 7px 14px; border-radius: 999px; }
+  @media (max-width: 900px) { .cols { grid-template-columns: 1fr; } .col { min-height: 520px; } }
 </style>

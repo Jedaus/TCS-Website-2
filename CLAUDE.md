@@ -35,32 +35,36 @@ This file serves as the primary system prompt and context document for building 
 
 ### B. Competitive Contrast (vs Flatpax Cut To Size)
 - **Flatpax**: Heavy, cold all-black background, 20+ cluttered submenus, factory catalog overload.
-- **TCS**: **Warm, editorial luxury, generous whitespace, clear intuitive pathways, and modern digital ease.**
+- **TCS**: **Bright, airy, photo-led, generous whitespace, clear intuitive pathways, and modern digital ease.**
 
 ---
 
-## 4. Visual Design System & Aesthetics (Inspired by Luxo Floors)
+## 4. Visual Design System & Aesthetics (Modelled on Luxo Floors)
 
-**Reference**: [LUXO Floors (luxofloors.com.au)](https://luxofloors.com.au/)
+**Reference**: [LUXO Floors (luxofloors.com.au)](https://luxofloors.com.au/) — bright, airy, photo-led; the deliberate opposite of Flatpax's black-and-red catalogue.
 
-### A. Color Palette — Warm Stone & Sand
-- **Warm Canvas (Background)**: `#FAF8F5` / `#F5F2EC` (Warm Alabaster / Cream Stone)
-- **Pure Crisp White (Cards & Elements)**: `#FFFFFF`
-- **Sand Stone Tint (Subtle Badges & Secondary Panels)**: `#EFECE5` / `#E8E3DA`
-- **Deep Espresso Charcoal (Text, Headings & Dark Footer)**: `#1A1917` / `#22201D`
-- **Muted Warm Sage (Accent Points)**: `#4E6B5B`
-- **Border Rules**: `#E5E0D8` (Soft, non-aggressive hairline dividers)
+### A. Color Palette — White & Slate Teal
+- **Base (Background)**: `#FFFFFF`
+- **Pale Band (Alternating sections)**: `#EEF4F3`, tint `#E3ECEA`
+- **Ink (Text & Headings)**: `#182629`; muted text `#51615F`
+- **Dark Slate (Trade section fallback & Footer)**: `#1C2A2D`
+- **Slate Teal Accent (Buttons, header tab)**: `#3B7383` (deep `#2F5E6B`). Drawn from the TCS logo navy; Luxo's own `#5A97A5` fails AA with white text (3.28:1), this passes (5.30:1).
+- **Border Rules**: `#DCE5E3`
 
 ### B. Typography & Hierarchy
-- **Editorial Dual-Weight Headlines**: Combine Light/Thin font weights with Semi-Bold/Bold weights in the same headline.
-  - *Example*: *Millimetre-Perfect Flat Pack.* **Engineered for Living & Building.**
-- **Fonts**: Modern clean sans-serif (e.g., Outfit / Inter / Archivo) with tabular lining figures for dimensions.
+- **Font**: Work Sans (self-hosted variable). No Inter, Roboto or system fonts.
+- **Editorial Dual-Weight Headlines**: a 300 weight line and a 600 weight line in the same heading.
+- **Manifesto**: one large medium-weight statement paragraph, no image.
+- Tabular lining figures for dimensions.
 
-### C. Spacing & Shapes (Anti-Clutter, Breathable)
-- **Generous Section Padding**: `100px – 140px` vertical padding for breathing room.
-- **Not Photo-Dense**: Avoid dense multi-image photo grids. Use generous 3-column curated cards or alternating split layouts (Image + Narrative).
-- **Border Radius**: Cards `14px – 18px`, Soft Asymmetric Pill Buttons (`border-radius: 4px 22px 22px 22px`).
-- **Footer Shape**: Soft 32px arched top border radius on dark espresso footer.
+### C. Imagery, Spacing & Shapes
+- **Few photos, shown big**: full-viewport hero photo with the headline over it; three full-height photo columns; one full-bleed trade photo. No dense grids.
+- White text over photos sits on a neutral near-black scrim (never a coloured gradient), with a dark background fallback behind every photo.
+- Use archive photos at native resolution only; never upscale (most originals are 960×540).
+- **Section padding**: `88px – 144px`.
+- **Buttons**: small full pills with a trailing dot (`Request a Quote •`), white / teal / outline.
+- **Header**: white logo tab top-left over the hero; fixed teal tab top-right with Trade Login and a menu.
+- **Cards**: 16px radius. **Footer**: dark slate with a 32px arched top.
 
 ---
 
@@ -71,13 +75,15 @@ The site is built as a cohesive, high-converting one-page experience with smooth
 ```
 [Sticky Floating Pill Header]
       ↓
-[1. Hero Section] — Warm stone mood, dual-weight headline, primary CTAs
+[1. Hero Section] — Full-viewport photo, dual-weight headline over it, primary CTAs
       ↓
-[2. Visual Portfolio Showcase] — Clean tabs (Kitchens, Wardrobes, Vanities), spacious cards
+[1b. Manifesto] — One large statement paragraph
+      ↓
+[2. Visual Portfolio Showcase] — Three full-height photo columns (Kitchens, Wardrobes, Vanities)
       ↓
 [3. Interactive 3D Planning] — goCabinets 3D launch button + YouTube Video Tutorial Modal
       ↓
-[4. Why Custom Flat Pack Beats Big-Box] — 3 warm stone cards (Precision, Aussie Boards, Local Speed)
+[4. Why Custom Flat Pack Beats Big-Box] — 3 ruled columns (Precision, Aussie Boards, Local Speed)
       ↓
 [5. The Builder's Advantage (For Trade)] — Rapid local remake backup + 24/7 goCabinets ordering
       ↓
@@ -104,14 +110,16 @@ The site is built as a cohesive, high-converting one-page experience with smooth
 - **Framework**: Astro (Zero JS by default, instant loading, first-class SEO).
 - **Styling**: Vanilla CSS with comprehensive CSS custom properties (`/src/styles/tokens.css`).
 - **Components Structure**:
-  - `Header.astro` (Floating glass pill navigation with Trade Login)
-  - `Hero.astro`
-  - `Showcase.astro` (Interactive category filter tabs)
+  - `Header.astro` (Logo tab + fixed teal tab with Trade Login and popover menu)
+  - `Hero.astro` (Full-viewport photo hero)
+  - `Manifesto.astro` (Large statement paragraph)
+  - `Showcase.astro` (Three full-height photo columns)
   - `Planner3D.astro` (goCabinets integration & YouTube video modal)
   - `Comparison.astro` (TCS vs Big-Box 3-column layout)
   - `TradeAdvantage.astro` (Builder-centric speed and portal benefits)
   - `QuoteForm.astro` (Clean responsive inquiry form)
-  - `Footer.astro` (32px arched deep charcoal footer)
+  - `Materials.astro`, `FAQ.astro`
+  - `Footer.astro` (32px arched dark slate footer)
 ## 8. Operational Policies & Practical Guidelines
 
 ### A. Installation Policy (Supply Only + Trade Network Referral)

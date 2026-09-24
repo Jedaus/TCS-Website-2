@@ -1,57 +1,31 @@
 ---
-import { plannerHref, GOCABINETS_PLANNER_URL, ADDRESS } from '../config';
+import { plannerHref, GOCABINETS_PLANNER_URL } from '../config';
 const ext = GOCABINETS_PLANNER_URL ? { target: '_blank', rel: 'noopener' } : {};
 ---
-<section class="hero wrap">
-  <div class="copy">
+<section class="hero">
+  <img class="photo" src="/jobs/kitchen-sunnybank.jpg" width="1440" height="1080" fetchpriority="high"
+    alt="A white gloss U-shaped kitchen with a peninsula bench, made by Total Cabinet Supplies in Sunnybank Hills." />
+  <div class="wrap copy">
     <h1 class="dual">Millimetre-Perfect Flat Pack. <b>Engineered for Living &amp; Building.</b></h1>
-    <p class="lede">
-      Custom-cut cabinetry made at our Woodridge factory, sized to your exact walls and
-      ceilings instead of 300, 600 and 900&nbsp;mm modules. For builders who can't afford
-      site recuts, and homeowners who want a true fit without joinery markups.
-    </p>
     <div class="actions">
-      <a class="btn btn--sage" href={plannerHref} {...ext}>Launch 3D Planner <span aria-hidden="true">↗</span></a>
-      <a class="btn btn--ghost" href="#quote">Request a Quote <span aria-hidden="true">•</span></a>
+      <a class="btn btn--white" href={plannerHref} {...ext}>Launch 3D Planner <span aria-hidden="true">↗</span></a>
+      <a class="btn btn--line-light" href="#quote">Request a Quote <span class="dot" aria-hidden="true"></span></a>
     </div>
-    <ul class="facts">
-      <li>Made in {ADDRESS.split(', ')[1]}</li>
-      <li>Blum hardware</li>
-      <li>Supply &amp; manufacture only</li>
-    </ul>
   </div>
-  <figure class="frame">
-    <img src="/jobs/kitchen-carindale.jpg" width="900" height="1600" fetchpriority="high"
-      alt="A white gloss kitchen run with a charcoal splashback and timber floor, made by Total Cabinet Supplies in Carindale." />
-    <figcaption>Kitchen, Carindale</figcaption>
-  </figure>
 </section>
 
 <style>
   .hero {
-    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-    gap: clamp(40px, 5vw, 80px); align-items: center;
-    padding-block: clamp(56px, 8vw, 112px) clamp(24px, 4vw, 48px);
+    position: relative; min-height: max(620px, 100svh);
+    display: flex; align-items: flex-end; color: #fff; isolation: isolate; background: var(--dark);
   }
-  .facts {
-    list-style: none; padding: 0; margin: 48px 0 0;
-    display: flex; flex-wrap: wrap; gap: 10px 28px;
-    font-size: .875rem; color: var(--muted);
+  .photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; z-index: -2; }
+  /* neutral scrim, darkest where the headline sits (7.6:1 for white text) */
+  .hero::before {
+    content: ''; position: absolute; inset: 0; z-index: -1;
+    background: linear-gradient(to top, rgb(var(--scrim) / .74) 0%, rgb(var(--scrim) / .5) 38%, rgb(var(--scrim) / .08) 72%, transparent 100%);
   }
-  .facts li { display: flex; align-items: center; gap: 10px; }
-  .facts li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--sage); }
-  .frame { margin: 0; position: relative; }
-  .frame img {
-    width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 45%;
-    border-radius: 18px 18px 18px 120px;
-  }
-  .frame figcaption {
-    position: absolute; right: 18px; bottom: 18px;
-    background: rgb(250 248 245 / .9); color: var(--espresso);
-    font-size: .8125rem; padding: 8px 14px; border-radius: var(--radius-pill);
-  }
-  @media (max-width: 900px) {
-    .hero { grid-template-columns: 1fr; }
-    .frame img { aspect-ratio: 4 / 3; border-radius: 16px 16px 16px 72px; }
-  }
+  .copy { width: 100%; padding-block: 0 clamp(48px, 8vh, 96px); }
+  h1 { font-size: clamp(2.4rem, 5vw, 3.9rem); max-width: 17ch; }
+  @media (max-width: 560px) { .hero { min-height: 88svh; } .photo { object-position: 60% 50%; } }
 </style>

@@ -5,15 +5,15 @@ const points = [
   { word: 'Australian.', title: 'Australian Made boards, Blum hardware',
     body: 'High-density Australian boards, with HMR moisture-resistant board as an option for kitchens, laundries and bathrooms, fitted with Austrian Blum hinges and runners.' },
   { word: 'Local.', title: 'Remade here, not shipped in',
-    body: "If a site measurement changes or a panel needs adjusting, our Woodridge workshop remakes it same-day or next-day. No three-to-four week wait." },
+    body: 'If a site measurement changes or a panel needs adjusting, our Woodridge workshop remakes it same-day or next-day. No three-to-four week wait.' },
 ];
 ---
 <section class="section" id="why">
   <div class="wrap">
-    <h2 class="dual dual--sm head">Why custom flat pack <b>beats the big-box aisle.</b></h2>
+    <h2 class="dual head">Why custom flat pack <b>beats the big&#8209;box aisle.</b></h2>
     <div class="grid">
       {points.map((p) => (
-        <article class="card point">
+        <article>
           <p class="word">{p.word}</p>
           <h3>{p.title}</h3>
           <p class="body">{p.body}</p>
@@ -24,11 +24,11 @@ const points = [
 </section>
 
 <style>
-  .head { max-width: 18ch; margin-bottom: 56px; }
-  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
-  .point { background: var(--canvas-2); border-color: var(--sand-2); padding: 40px 34px 44px; }
-  .word { font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 200; letter-spacing: -.04em; line-height: 1; color: var(--sage); margin-bottom: 36px; }
-  h3 { font-size: 1.1875rem; font-weight: 600; margin-bottom: 12px; }
+  .head { max-width: 24ch; margin-bottom: 64px; }
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(32px, 4vw, 64px); }
+  article { border-top: 1px solid var(--ink); padding-top: 28px; }
+  .word { font-size: clamp(2.4rem, 3.6vw, 3.2rem); font-weight: 300; letter-spacing: -.03em; line-height: 1; color: var(--accent); margin-bottom: 28px; }
+  h3 { font-size: 1.125rem; font-weight: 600; margin-bottom: 10px; }
   .body { color: var(--muted); font-size: .9375rem; }
   @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
 </style>

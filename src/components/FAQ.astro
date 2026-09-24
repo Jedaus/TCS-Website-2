@@ -14,7 +14,7 @@ const faqs = [
 ---
 <section class="section" id="faq">
   <div class="wrap split top">
-    <h2 class="dual dual--sm">Questions, <b>answered straight.</b></h2>
+    <h2 class="dual">Questions, <b>answered straight.</b></h2>
     <div class="list">
       {faqs.map(([q, a]) => (
         <details>
@@ -37,7 +37,7 @@ const faqs = [
     padding: 24px 0; font-weight: 600; font-size: 1.0625rem;
   }
   summary::-webkit-details-marker { display: none; }
-  summary::after { content: '+'; flex: none; font-weight: 300; font-size: 1.5rem; line-height: 1; color: var(--sage); transition: transform .3s var(--ease); }
+  summary::after { content: '+'; flex: none; font-weight: 300; font-size: 1.5rem; line-height: 1; color: var(--accent); transition: transform .3s var(--ease); }
   details[open] summary::after { transform: rotate(45deg); }
   details p { padding: 0 48px 26px 0; color: var(--muted); max-width: 62ch; }
   @media (max-width: 900px) { .top { grid-template-columns: 1fr; } }

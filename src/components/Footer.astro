@@ -5,8 +5,8 @@ const ext = GOCABINETS_PORTAL_URL ? { target: '_blank', rel: 'noopener' } : {};
 <footer class="foot">
   <div class="wrap">
     <div class="top">
-      <h2 class="dual dual--sm">The Woodridge workshop. <b>Come and see the boards.</b></h2>
-      <a class="btn btn--light" href={portalHref} {...ext}>Trade Login <span aria-hidden="true">↗</span></a>
+      <h2 class="dual">The Woodridge workshop. <b>Come and see the boards.</b></h2>
+      <a class="btn btn--white" href={portalHref} {...ext}>Trade Login <span aria-hidden="true">↗</span></a>
     </div>
     <dl class="cols">
       <div><dt>Workshop</dt><dd><a href={MAP_URL} target="_blank" rel="noopener">{ADDRESS} ↗</a></dd></div>
@@ -19,8 +19,8 @@ const ext = GOCABINETS_PORTAL_URL ? { target: '_blank', rel: 'noopener' } : {};
 
 <style>
   .foot {
-    background: var(--espresso-2); color: var(--canvas);
-    border-radius: var(--radius-footer) var(--radius-footer) 0 0;
+    background: var(--dark); color: var(--bg);
+    border-radius: 32px 32px 0 0;
     padding-block: var(--section) 48px;
   }
   .top { display: flex; justify-content: space-between; align-items: end; gap: 32px; flex-wrap: wrap; }

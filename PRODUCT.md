@@ -10,7 +10,7 @@ web
 
 ## Stack
 
-Astro, vanilla CSS with custom properties in `src/styles/tokens.css`. One page, component per section.
+Astro, vanilla CSS with custom properties in `src/styles/tokens.css`, Work Sans. One page, component per section.
 
 ## Users
 
@@ -44,7 +44,7 @@ Total Cabinet Supplies (TCS) manufactures and supplies custom flat pack cabinetr
 
 ## Evidence on Hand
 
-- Job photographs from the client archive, cleared for public use; ten in `public/jobs/`, provenance embedded in each file.
+- Job photographs from the client archive, cleared for public use; five in `public/jobs/` at native resolution, provenance embedded in each file. Most archive originals are 960×540, too small for full-width use.
 - Contact: 07 3299 1978, totalcabinetsupplies@gmail.com, 68 Compton Rd, Woodridge QLD.
 - Not provided and not to be invented: ABN, testimonials, review scores, customer counts, prices.
 

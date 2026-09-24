@@ -7,18 +7,18 @@ const steps = [
   ['Send it to us', 'Your layout arrives at the Woodridge counter ready to quote.'],
 ];
 ---
-<section class="section section--sand" id="planner">
+<section class="section band" id="planner">
   <div class="wrap split">
     <div>
-      <h2 class="dual dual--sm">Plan it in 3D. <b>We cut it to the millimetre.</b></h2>
+      <h2 class="dual">Plan it in 3D. <b>We cut it to the millimetre.</b></h2>
       <p class="lede">
         Our goCabinets planner lets builders and homeowners lay out a kitchen, laundry or wardrobe
         in the browser, then hands the exact sizes straight to our factory. No modular fillers,
         no guesswork at the counter.
       </p>
       <div class="actions">
-        <a class="btn btn--sage" href={plannerHref} {...ext}>Launch 3D Planner <span aria-hidden="true">↗</span></a>
-        <button class="btn btn--ghost" type="button" data-open-video>Watch 3D Tutorial Video <span aria-hidden="true">▶</span></button>
+        <a class="btn btn--accent" href={plannerHref} {...ext}>Launch 3D Planner <span aria-hidden="true">↗</span></a>
+        <button class="btn btn--line" type="button" data-open-video>Watch 3D Tutorial Video <span aria-hidden="true">▶</span></button>
       </div>
     </div>
     <ol class="card steps">
@@ -55,14 +55,14 @@ const steps = [
   .n {
     flex: none; width: 40px; height: 40px; border-radius: 50%;
     display: grid; place-items: center;
-    background: var(--sand); color: var(--sage); font-weight: 700;
+    background: var(--tint); color: var(--accent-deep); font-weight: 700;
   }
   .steps h3 { font-size: 1.125rem; font-weight: 600; margin-bottom: 4px; }
   .steps p { color: var(--muted); font-size: .9375rem; }
 
   dialog {
-    width: min(960px, 92vw); padding: 0; border: 0; border-radius: var(--radius-card);
-    background: var(--espresso); color: var(--canvas); overflow: hidden;
+    width: min(960px, 92vw); padding: 0; border: 0; border-radius: var(--radius);
+    background: var(--ink); color: var(--bg); overflow: hidden;
   }
   dialog::backdrop { background: rgb(26 25 23 / .72); backdrop-filter: blur(4px); }
   dialog[open] { animation: rise .35s var(--ease); }
@@ -70,7 +70,7 @@ const steps = [
   .close {
     position: absolute; top: 10px; right: 10px; z-index: 1;
     width: 40px; height: 40px; border-radius: 50%; border: 0; cursor: pointer;
-    background: rgb(250 248 245 / .14); color: var(--canvas); font-size: 1.5rem; line-height: 1;
+    background: rgb(250 248 245 / .14); color: var(--bg); font-size: 1.5rem; line-height: 1;
   }
   .video :global(iframe), .video { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; }
   .soon { padding: 64px 48px; max-width: 52ch; }
